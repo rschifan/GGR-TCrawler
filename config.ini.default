@@ -1,0 +1,38 @@
+[CRAWLER]
+# Seconds between requests. This value should be adjusted accordingly to the rate limits. 
+sleep.time = 3
+# Print error messages (possible values True/False) 
+verbose = False
+# Decomment this line to set a limit on the max number of requests to the crawler
+# max.requests = 3
+
+[API]
+consumer_key = ADD_YOUR_CONSUMER_KEY 
+consumer_secret = ADD_YOUR_CONSUMER_SECRET 
+bearer_token = ADD_YOUR_BEARER_TOKEN
+
+[ENDPOINT]
+api_url = https://api.twitter.com/2/tweets/search/all
+
+[QUERY]
+query = -is:retweet bounding_box:[2.069938 48.77923 2.16835 48.82861]
+
+[PARAMS]
+tweet.fields = author_id,created_at,geo,lang,conversation_id,attachments,entities,public_metrics,context_annotations
+place.fields = contained_within,country,country_code,full_name,geo,id,name,place_type
+user.fields = id,description,created_at,location,public_metrics,url,protected,verified
+media.fields = duration_ms,height,media_key,preview_image_url,public_metrics,type,url,width
+expansions = attachments.media_keys,geo.place_id,author_id
+max_results = 100
+start_time = 2010-01-01T00:00:00Z
+end_time = 2021-05-31T23:59:59Z
+
+# Defines the next page to be crawled in a paged query. Uncommenting this line means the crawler is going to 
+# start the process from that particular page. Leave it commented if you want to start the query
+# from scratch. 
+# next_token = b26v89c19zqg8o3fos8vqiz1p9o5ijbq3cw9nhc21si9p
+
+[MONGODB]
+hostname = localhost
+port = 27017
+db = gogreenroutes
