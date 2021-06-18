@@ -94,7 +94,7 @@ class TCrawler:
             json_response = self.connect_to_endpoint(
                 self.api_url, 
                 headers, 
-                self.params | self.query
+                {**self.params, **self.query} 
             )
 
             if json_response and 'meta' in json_response:
