@@ -4,8 +4,8 @@ Template for a simple Twitter API crawler (v2).
 
 Clone the repository:
 
-**git clone https://github.com/rschifan/GGR-TCrawler.git**
-**cd GGR-TCrawler**
+  git clone https://github.com/rschifan/GGR-TCrawler.git
+  cd GGR-TCrawler
 
 Copy the **config.ini.default** file in a new **config.ini** document and edit the different sections according to your credentials and preferences. 
 
