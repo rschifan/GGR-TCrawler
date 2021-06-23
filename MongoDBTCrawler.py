@@ -69,6 +69,3 @@ class MongoDBTCrawler(TCrawler):
                             print(ex)
 
 
-if __name__ == "__main__":
-    crawler = MongoDBTCrawler('versailles')
-    crawler.run()

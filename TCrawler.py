@@ -69,11 +69,20 @@ class TCrawler:
         if self.verbose: 
             print('retrieving: {}'.format(prepped.url))
         
-        response = requests.Session().send(prepped)
+        n_attempts = 0
+        while True:
+        
+            response = requests.Session().send(prepped)
 
-        if response.status_code != 200:
-            raise Exception(response.status_code, response.text)
-        return response.json()
+            if response.status_code != 200:
+                if n_attempts>3 or response.status_code==400:
+                    raise Exception(response.status_code, response.text)
+                else:
+                    print(f"Exception: {response.status_code} {response.text}\nn_attempts {n_attempts}")                    
+                    n_attempts+=1
+                    time.sleep(60*n_attempts)
+            else:
+                return response.json()
 
     def save(self, json_response):
         pprint(json_response)
@@ -86,16 +95,19 @@ class TCrawler:
 
         while True:
 
+            
             if self.max_requests and self.max_requests > 0:
                 if counter>=self.max_requests:
                     print('Reached max requests limit: {}'.format(self.max_requests))
                     break
+            
 
             json_response = self.connect_to_endpoint(
                 self.api_url, 
                 headers, 
                 {**self.params, **self.query} 
             )
+            
 
             if json_response and 'meta' in json_response:
 
