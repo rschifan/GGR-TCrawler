@@ -8,7 +8,6 @@ class TCrawler:
     def __init__(self, config_file = "config.ini"):    
         print('TCrawler: __init__')
         self.config_file = config_file
-        
         self.load_config(config_file)
 
     
@@ -95,7 +94,6 @@ class TCrawler:
 
         while True:
 
-            
             if self.max_requests and self.max_requests > 0:
                 if counter>=self.max_requests:
                     print('Reached max requests limit: {}'.format(self.max_requests))

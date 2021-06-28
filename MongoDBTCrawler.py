@@ -1,7 +1,6 @@
 from TCrawler import TCrawler
 from pymongo import MongoClient
 from pymongo.errors import BulkWriteError
-from pymongo.errors import CursorNotFound
 from configparser import RawConfigParser
 from pprint import pprint
 
@@ -23,6 +22,9 @@ class MongoDBTCrawler(TCrawler):
         self.hostname = db_conf['hostname']
         self.port = int(db_conf['port'])
         print('loaded mongodb settings')
+
+    def set_collection(self, collection):
+        self.collection = collection
 
     def init_db(self):
         self.client = MongoClient(self.hostname, self.port)
